@@ -37,6 +37,7 @@
             android:adjustViewBounds="true"
             bind:image_placeholder="@{@drawable/ic_museum}"
             bind:image_error="@{@drawable/ic_museum}"
+            android:contentDescription="@{attraction.name}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/attractionItemName"
             tools:srcCompat="@tools:sample/avatars" />
