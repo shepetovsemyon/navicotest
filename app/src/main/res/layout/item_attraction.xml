@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:foreground="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingStart="@dimen/margin_general"
+        android:paddingTop="@dimen/margin_general_half"
+        android:paddingEnd="@dimen/margin_general"
+        android:paddingBottom="@dimen/margin_general_half">
+
+        <TextView
+            android:id="@+id/attractionItemName"
+            style="@style/H1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{attraction.name}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Большой Екатерининский дворец" />
+
+        <ImageView
+            android:id="@+id/attractionItemImage"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_general_half"
+            android:scaleType="fitXY"
+            bind:image_uri="@{attraction.photo}"
+            android:adjustViewBounds="true"
+            bind:image_placeholder="@{@drawable/ic_museum}"
+            bind:image_error="@{@drawable/ic_museum}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/attractionItemName"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/attractionItemDescription"
+            style="@style/GeneralText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_general_half"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:text="@{attraction.description}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/attractionItemImage"
+            app:layout_constraintTop_toTopOf="@+id/attractionItemImage"
+            tools:text="Петергоф — внутригородское муниципальное образование в составе Петродворцового района города федерального значения Санкт-Петербурга. Расположен на южном берегу Финского залива. Крупный туристический, научный и учебный центр к западу от Санкт-Петербурга, в 29 км по железной дороге." />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <data>
+        <variable
+            name="attraction"
+            type="ru.shepetov.navicotest.data.Attraction" />
+    </data>
+</layout>
