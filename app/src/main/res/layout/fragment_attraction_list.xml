@@ -28,6 +28,7 @@
             tools:itemCount="3"
             android:clickable="true"
             android:focusable="true"
+            android:overScrollMode="never"
             tools:listitem="@layout/item_attraction" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

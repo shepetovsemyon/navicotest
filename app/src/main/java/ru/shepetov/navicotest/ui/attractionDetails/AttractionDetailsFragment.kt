@@ -50,7 +50,7 @@ class AttractionDetailsFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        binding.root.setOnClickListener {
+        binding.attractionDetailsShowInMapBtn.setOnClickListener {
             viewModel.attraction.value?.location?.let { location ->
                 showMap(location)
             }

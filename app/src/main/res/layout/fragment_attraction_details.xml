@@ -48,7 +48,7 @@
                     android:text="@{viewModel.attraction.description}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/attractionDetailsPhoto"
+                    app:layout_constraintTop_toBottomOf="@id/attractionDetailsPhoto"
                     tools:text="Екатерининский дворец — бывший императорский дворец, официальная летняя резиденция трёх российских монархов — Екатерины I, Елизаветы Петровны и Екатерины II; дворец расположен в 26 км к югу от центра Санкт-Петербурга в бывшем Царском Селе. Является Объектом культурного наследия России." />
 
                 <TextView
@@ -61,9 +61,20 @@
                     android:text="@{viewModel.attraction.address}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/attractionDetailsDescription"
+                    app:layout_constraintTop_toBottomOf="@id/attractionDetailsDescription"
                     tools:text="Садовая ул., 7, Пушкин, Санкт-Петербург" />
 
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/attractionDetailsShowInMapBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/attraction_details_show_in_map_btn_text"
+                    android:layout_marginTop="@dimen/margin_general"
+                    android:backgroundTint="@android:color/black"
+                    app:rippleColor="@android:color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/attractionDetailsNameAddress" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 
