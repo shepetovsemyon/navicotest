@@ -34,9 +34,9 @@
             android:layout_marginTop="@dimen/margin_general_half"
             android:scaleType="fitXY"
             bind:image_uri="@{attraction.photo}"
-            android:adjustViewBounds="true"
             bind:image_placeholder="@{@drawable/ic_museum}"
             bind:image_error="@{@drawable/ic_museum}"
+            android:adjustViewBounds="true"
             android:contentDescription="@{attraction.name}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/attractionItemName"
@@ -54,7 +54,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/attractionItemImage"
             app:layout_constraintTop_toTopOf="@+id/attractionItemImage"
-            tools:text="Петергоф — внутригородское муниципальное образование в составе Петродворцового района города федерального значения Санкт-Петербурга. Расположен на южном берегу Финского залива. Крупный туристический, научный и учебный центр к западу от Санкт-Петербурга, в 29 км по железной дороге." />
+            tools:text="Екатерининский дворец — бывший императорский дворец, официальная летняя резиденция трёх российских монархов — Екатерины I, Елизаветы Петровны и Екатерины II; дворец расположен в 26 км к югу от центра Санкт-Петербурга в бывшем Царском Селе. Является Объектом культурного наследия России." />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <data>

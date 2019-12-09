@@ -26,7 +26,7 @@ val networkModule = module {
         }
 
         val logging = HttpLoggingInterceptor().apply {
-            HttpLoggingInterceptor.Level.BODY
+            level = HttpLoggingInterceptor.Level.BODY
         }
 
         OkHttpClient.Builder()

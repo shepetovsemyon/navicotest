@@ -1,4 +1,4 @@
-package ru.shepetov.navicotest.ui.attractionsList
+package ru.shepetov.navicotest
 
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController

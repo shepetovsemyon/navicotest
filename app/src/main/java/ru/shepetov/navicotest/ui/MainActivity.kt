@@ -14,9 +14,3 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 }
-
-class SharedViewModel: ViewModel() {
-    val attractionsList = MutableLiveData<List<Attraction>>()
-}
-
-

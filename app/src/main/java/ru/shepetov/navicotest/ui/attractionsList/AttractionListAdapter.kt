@@ -10,7 +10,7 @@ import ru.shepetov.navicotest.R
 import ru.shepetov.navicotest.data.Attraction
 import ru.shepetov.navicotest.databinding.ItemAttractionBinding
 
-class AttractionListAdapter(private val clickEvent: MutableLiveData<Attraction?>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class AttractionListAdapter(private val clickEvent: MutableLiveData<Attraction>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val items = mutableListOf<Attraction>()
 
     fun updateItems(attractions: List<Attraction>) {

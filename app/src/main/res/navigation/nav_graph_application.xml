@@ -9,7 +9,7 @@
         android:id="@+id/attracionListFragment"
         android:name="ru.shepetov.navicotest.ui.attractionsList.AttractionListFragment"
         android:label="fragment_attracion_list"
-        tools:layout="@layout/fragment_attracion_list" >
+        tools:layout="@layout/fragment_attraction_list" >
         <action
             android:id="@+id/actionAttracionListToAttractionDetails"
             app:destination="@id/attractionDetails"

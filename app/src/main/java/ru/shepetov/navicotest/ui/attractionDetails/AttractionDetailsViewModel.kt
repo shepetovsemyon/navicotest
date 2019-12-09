@@ -5,5 +5,5 @@ import androidx.lifecycle.ViewModel
 import ru.shepetov.navicotest.data.Attraction
 
 class AttractionDetailsViewModel : ViewModel() {
-    val attraction = MutableLiveData<Attraction?>()
+    val attraction = MutableLiveData<Attraction>()
 }

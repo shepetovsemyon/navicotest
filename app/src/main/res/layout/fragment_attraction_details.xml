@@ -1,13 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     tools:context=".ui.attractionDetails.AttractionDetailsFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-</FrameLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_general">
+
+                <TextView
+                    android:id="@+id/attractionDetailsName"
+                    style="@style/H1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.attraction.name}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Большой Екатерининский дворец" />
+
+                <ImageView
+                    android:id="@+id/attractionDetailsPhoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_general"
+                    android:adjustViewBounds="true"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/attractionDetailsName"
+                    bind:image_error="@{@drawable/ic_museum}"
+                    bind:image_placeholder="@{@drawable/ic_museum}"
+                    bind:image_uri="@{viewModel.attraction.photo}"
+                    tools:src="@tools:sample/backgrounds/scenic" />
+
+                <TextView
+                    android:id="@+id/attractionDetailsDescription"
+                    style="@style/GeneralText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_general"
+                    android:gravity="center"
+                    android:text="@{viewModel.attraction.description}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/attractionDetailsPhoto"
+                    tools:text="Екатерининский дворец — бывший императорский дворец, официальная летняя резиденция трёх российских монархов — Екатерины I, Елизаветы Петровны и Екатерины II; дворец расположен в 26 км к югу от центра Санкт-Петербурга в бывшем Царском Селе. Является Объектом культурного наследия России." />
+
+                <TextView
+                    android:id="@+id/attractionDetailsNameAddress"
+                    style="@style/SmallText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_general"
+                    android:gravity="end"
+                    android:text="@{viewModel.attraction.address}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/attractionDetailsDescription"
+                    tools:text="Садовая ул., 7, Пушкин, Санкт-Петербург" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="ru.shepetov.navicotest.ui.attractionDetails.AttractionDetailsViewModel" />
+    </data>
+
+</layout>
