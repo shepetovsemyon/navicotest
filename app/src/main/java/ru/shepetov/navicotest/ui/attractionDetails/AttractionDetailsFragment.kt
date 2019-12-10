@@ -4,16 +4,11 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
-import android.text.InputFilter
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.EditText
+import android.view.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.navArgs
-import kotlinx.android.synthetic.main.fragment_attraction_list.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -57,15 +52,12 @@ class AttractionDetailsFragment : BaseFragment() {
             }
         }
 
-        activity?.let {
-            if (it !is AppCompatActivity) return@let
-            it.setSupportActionBar(binding.appBar)
-            it.supportActionBar?.let {
-                it.setDisplayShowHomeEnabled(true)
-                it.setDisplayHomeAsUpEnabled(true)
-                it.setDisplayShowTitleEnabled(false)
-                it.elevation = 0f
+        val activity = activity as? AppCompatActivity ?: return
+        binding.appBar.apply {
+            navigationIcon = ContextCompat.getDrawable(activity, R.drawable.ic_arrow_back)
 
+            setNavigationOnClickListener {
+                navigator?.popBackStack()
             }
         }
     }
