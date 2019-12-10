@@ -11,18 +11,32 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/margin_general">
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.appbar.AppBarLayout
+                    android:id="@+id/appBarLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/appBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </com.google.android.material.appbar.AppBarLayout>
 
                 <TextView
                     android:id="@+id/attractionDetailsName"
                     style="@style/H1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_general"
+                    android:layout_marginStart="@dimen/margin_general"
+                    android:layout_marginEnd="@dimen/margin_general"
                     android:text="@{viewModel.attraction.name}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
                     tools:text="Большой Екатерининский дворец" />
 
                 <ImageView
@@ -33,6 +47,7 @@
                     android:adjustViewBounds="true"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/attractionDetailsName"
+                    android:contentDescription="@{viewModel.attraction.description}"
                     bind:image_error="@{@drawable/ic_museum}"
                     bind:image_placeholder="@{@drawable/ic_museum}"
                     bind:image_uri="@{viewModel.attraction.photo}"
@@ -46,6 +61,8 @@
                     android:layout_marginTop="@dimen/margin_general"
                     android:gravity="center"
                     android:text="@{viewModel.attraction.description}"
+                    android:layout_marginStart="@dimen/margin_general"
+                    android:layout_marginEnd="@dimen/margin_general"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/attractionDetailsPhoto"
@@ -59,6 +76,8 @@
                     android:layout_marginTop="@dimen/margin_general"
                     android:gravity="end"
                     android:text="@{viewModel.attraction.address}"
+                    android:layout_marginStart="@dimen/margin_general"
+                    android:layout_marginEnd="@dimen/margin_general"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/attractionDetailsDescription"

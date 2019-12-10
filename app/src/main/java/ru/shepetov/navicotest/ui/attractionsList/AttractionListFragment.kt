@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -41,12 +43,6 @@ class AttractionListFragment : BaseFragment() {
             it.lifecycleOwner = viewLifecycleOwner
         }.root
     }
-//
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//
-//        viewModel.fetchData()
-//    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -67,22 +63,25 @@ class AttractionListFragment : BaseFragment() {
 
     private fun initObservers() = with(viewModel) {
 
-        attractionsList.observe(this@AttractionListFragment, Observer {attractions ->
+        attractionsList.observe(this@AttractionListFragment, Observer { attractions ->
             attractionsAdapter.updateItems(attractions)
         })
 
-        clickEvent.observeOnes(this@AttractionListFragment, Observer {attraction ->
+        clickEvent.observeOnes(this@AttractionListFragment, Observer { attraction ->
             navigator?.navigate(actionAttracionListToAttractionDetails(attraction))
         })
 
         query.observe(this@AttractionListFragment, Observer {
-            viewModel.search(it )
+            viewModel.search(it)
         })
     }
 
     private fun initSearchView() {
 
         binding.attractionListSearchView.apply {
+            onActionViewExpanded()
+            clearFocus()
+
             findViewById<EditText?>(R.id.search_src_text)?.apply {
                 filters = arrayOf(InputFilter.LengthFilter(SEARCH_VIEW_MAX_LENGTH))
             }

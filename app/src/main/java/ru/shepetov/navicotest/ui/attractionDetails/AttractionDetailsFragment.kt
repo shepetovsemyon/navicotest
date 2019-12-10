@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.navArgs
@@ -53,6 +54,18 @@ class AttractionDetailsFragment : BaseFragment() {
         binding.attractionDetailsShowInMapBtn.setOnClickListener {
             viewModel.attraction.value?.location?.let { location ->
                 showMap(location)
+            }
+        }
+
+        activity?.let {
+            if (it !is AppCompatActivity) return@let
+            it.setSupportActionBar(binding.appBar)
+            it.supportActionBar?.let {
+                it.setDisplayShowHomeEnabled(true)
+                it.setDisplayHomeAsUpEnabled(true)
+                it.setDisplayShowTitleEnabled(false)
+                it.elevation = 0f
+
             }
         }
     }
