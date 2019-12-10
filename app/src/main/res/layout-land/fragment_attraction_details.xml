@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.attractionDetails.AttractionDetailsFragment">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.appbar.AppBarLayout
+                    android:id="@+id/appBarLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/appBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </com.google.android.material.appbar.AppBarLayout>
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.5" />
+
+                <TextView
+                    android:id="@+id/attractionDetailsName"
+                    style="@style/H1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_general"
+                    android:layout_marginEnd="@dimen/margin_general"
+                    android:text="@{viewModel.attraction.name}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+                    tools:text="Большой Екатерининский дворец" />
+
+                <ImageView
+                    android:id="@+id/attractionDetailsPhoto"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_general"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@{viewModel.attraction.description}"
+                    android:layout_marginStart="@dimen/margin_general"
+                    android:layout_marginEnd="@dimen/margin_general_half"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/attractionDetailsName"
+                    bind:image_error="@{@drawable/ic_museum}"
+                    bind:image_placeholder="@{@drawable/ic_museum}"
+                    bind:image_uri="@{viewModel.attraction.photo}"
+                    tools:src="@tools:sample/backgrounds/scenic" />
+
+                <TextView
+                    android:id="@+id/attractionDetailsDescription"
+                    style="@style/GeneralText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@{viewModel.attraction.description}"
+                    android:layout_marginStart="@dimen/margin_general_half"
+                    android:layout_marginEnd="@dimen/margin_general"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/guideline"
+                    app:layout_constraintTop_toTopOf="@+id/attractionDetailsPhoto"
+                    tools:text="Екатерининский дворец — бывший императорский дворец, официальная летняя резиденция трёх российских монархов — Екатерины I, Елизаветы Петровны и Екатерины II; дворец расположен в 26 км к югу от центра Санкт-Петербурга в бывшем Царском Селе. Является Объектом культурного наследия России." />
+
+                <TextView
+                    android:id="@+id/attractionDetailsNameAddress"
+                    style="@style/SmallText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_general"
+                    android:layout_marginEnd="@dimen/margin_general"
+                    android:gravity="end"
+                    android:text="@{viewModel.attraction.address}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/guideline"
+                    app:layout_constraintTop_toBottomOf="@id/attractionDetailsDescription"
+                    tools:text="Садовая ул., 7, Пушкин, Санкт-Петербург" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/attractionDetailsShowInMapBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@android:color/black"
+                    android:text="@string/attraction_details_show_in_map_btn_text"
+                    android:layout_marginTop="@dimen/margin_general_half"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/barrier"
+                    app:rippleColor="@android:color/white" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/barrier"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="attractionDetailsNameAddress,attractionDetailsPhoto"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="ru.shepetov.navicotest.ui.attractionDetails.AttractionDetailsViewModel" />
+    </data>
+
+</layout>
