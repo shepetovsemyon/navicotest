@@ -2,23 +2,26 @@ package ru.shepetov.navicotest.ui.attractionsList
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import ru.shepetov.navicotest.State
 import ru.shepetov.navicotest.data.Attraction
 import ru.shepetov.navicotest.search
 import ru.shepetov.navicotest.storage.AttractionsRepository
-
+import kotlin.coroutines.CoroutineContext
 
 class AttractionListViewModel(private val attractionsRepository: AttractionsRepository) :
-    ViewModel(), CoroutineScope by CoroutineScope(Dispatchers.Main), LoadingStateInterceptor {
+    ViewModel(), CoroutineScope by CoroutineScope(Dispatchers.Main + SupervisorJob()), LoadingStateInterceptor {
 
-    private var allAttractions = listOf<Attraction>()
     val attractionsList = MutableLiveData<List<Attraction>>()
     val clickEvent = MutableLiveData<Attraction>()
     val query = MutableLiveData<String>()
+
+    private var allAttractions = listOf<Attraction>()
+
+    private val exceptionHandler = CoroutineExceptionHandler { _, exception ->
+        state.value = State.ERROR
+        errorMsg.value = exception.message
+    }
 
     override val errorMsg = MutableLiveData<String?>()
 
@@ -26,7 +29,6 @@ class AttractionListViewModel(private val attractionsRepository: AttractionsRepo
         .apply {
             value = State.LOADING
         }
-
 
     init {
         fetchData()
@@ -36,7 +38,9 @@ class AttractionListViewModel(private val attractionsRepository: AttractionsRepo
         fetchData()
     }
 
-    private fun fetchData() = launch {
+    private fun fetchData() = launch(exceptionHandler) {
+        state.value = State.LOADING
+
         allAttractions = withContext(Dispatchers.IO) {
             attractionsRepository.fetchAttractionsList()
         }
