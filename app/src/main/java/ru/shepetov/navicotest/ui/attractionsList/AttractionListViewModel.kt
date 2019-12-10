@@ -1,6 +1,5 @@
 package ru.shepetov.navicotest.ui.attractionsList
 
-import androidx.databinding.adapters.SearchViewBindingAdapter
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -14,23 +13,30 @@ import ru.shepetov.navicotest.storage.AttractionsRepository
 
 
 class AttractionListViewModel(private val attractionsRepository: AttractionsRepository) :
-    ViewModel(), CoroutineScope by CoroutineScope(Dispatchers.Main) {
+    ViewModel(), CoroutineScope by CoroutineScope(Dispatchers.Main), LoadingStateInterceptor {
 
     private var allAttractions = listOf<Attraction>()
     val attractionsList = MutableLiveData<List<Attraction>>()
     val clickEvent = MutableLiveData<Attraction>()
     val query = MutableLiveData<String>()
 
-    val state = MutableLiveData<State>()
+    override val errorMsg = MutableLiveData<String?>()
+
+    override val state = MutableLiveData<State>()
         .apply {
             value = State.LOADING
         }
+
 
     init {
         fetchData()
     }
 
-    fun fetchData() = launch {
+    override fun refresh() {
+        fetchData()
+    }
+
+    private fun fetchData() = launch {
         allAttractions = withContext(Dispatchers.IO) {
             attractionsRepository.fetchAttractionsList()
         }
@@ -43,6 +49,4 @@ class AttractionListViewModel(private val attractionsRepository: AttractionsRepo
         attractionsList.value = search(query, allAttractions) { listOf(it.name ?: "") }
         return true
     }
-
 }
-

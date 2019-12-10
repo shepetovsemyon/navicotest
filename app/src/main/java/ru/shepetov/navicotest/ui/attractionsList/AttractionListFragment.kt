@@ -47,6 +47,8 @@ class AttractionListFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.attractionListStateInterceptorScreen.stateInterceptor = viewModel
+
         attractionsAdapter = AttractionListAdapter(viewModel.clickEvent)
 
         attractionList.apply {

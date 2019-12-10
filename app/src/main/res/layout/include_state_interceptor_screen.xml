@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminateTint="@android:color/holo_blue_light"
+            bind:view_visibility="@{stateInterceptor.state == State.LOADING}"
+            tools:visibility="gone"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/margin_general"
+            bind:view_visibility="@{stateInterceptor.state == State.ERROR}"
+            tools:visibility="gone">
+
+            <TextView
+                android:id="@+id/errorTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/H1"
+                android:text="@string/error_title"
+                android:gravity="center_horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{stateInterceptor.errorMsg}"
+                style="@style/SmallText"
+                android:gravity="end"
+                android:layout_marginTop="@dimen/margin_general"
+                app:layout_constraintTop_toBottomOf="@+id/errorTitle"
+                bind:view_visibility="@{stateInterceptor.errorMsg != null}"
+                tools:text="404 Not found" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/black"
+                android:text="@string/refresh_btn_name"
+                android:onClick="@{() -> stateInterceptor.refresh()}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:rippleColor="@android:color/white" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+
+    <data>
+        <import type="ru.shepetov.navicotest.State"/>
+
+        <variable
+            name="stateInterceptor"
+            type="ru.shepetov.navicotest.ui.attractionsList.LoadingStateInterceptor" />
+    </data>
+</layout>
